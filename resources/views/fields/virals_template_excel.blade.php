@@ -1,17 +1,4 @@
 <?php
-$item_name = strtolower(isset($field['entity_singular']) && !empty($field['entity_singular']) ? $field['entity_singular'] : $field['label']);
-
-$items = old(square_brackets_to_dots($field['name'])) ?? $field['value'] ?? $field['default'] ?? [];
-if (is_array($items)) {
-    if (count($items)) {
-        foreach ($items as $index => $item) {
-            $items[$index] = (object) $item;
-        }
-        $items = collect($items);
-    } else {
-        $items = collect([]);
-    }
-}
 $modelClass = get_class($crud->model);
 $column_model = \DB::connection()->getSchemaBuilder()->getColumnListing($crud->model->getTable());
 unset($column_model[array_search( with(new $modelClass)->getKeyName(), $column_model)]);

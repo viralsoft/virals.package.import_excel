@@ -15,7 +15,55 @@ Via Composer
 $ composer require viralsbackpack/backpackexcel
 ```
 
+Run command:
+```bash
+php artisan vendor:publish --provider="ViralsBackpack\BackPackImageUpload\BackPackExcelServiceProvider"
+
+php artisan migrate
+```
+
 ## Usage
+Add trait ```ViralsBackpack\BackPackExcel\Traits\ViralsRelationshipMethod``` to main model import data from excel , Eg:
+
+```php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
+use ViralsBackpack\BackPackExcel\Traits\ViralsRelationshipMethod;// <------------------------------- this one
+
+class Tag extends Model
+{
+    use CrudTrait;
+    use ViralsRelationshipMethod; // <------------------------------- this one
+
+    /*
+    |--------------------------------------------------------------------------
+    | GLOBAL VARIABLES
+    |--------------------------------------------------------------------------
+    */
+
+    protected $table = 'tags';
+    protected $fillable = ['name'];
+}
+```
+
+Add field to controller to use setting field:
+```php
+$this->crud->addField([ 
+    'name' => 'prices', //key unique field
+    'type' => 'virals_template_excel',
+    'request_class' => TagRequest::class, // request class validate field in excel
+]);
+```
+Add sidebar manager log import excel
+```php
+<li><a href="{{ backpack_url('virals-excel-field') }}"><i class="fa fa-files-o"></i> <span>Fields</span></a></li>
+<li><a href="{{ backpack_url('virals-excel-file') }}"><i class="fa fa-files-o"></i> <span>Excel Files</span></a></li>
+<li><a href="{{ backpack_url('virals-excel-file-log') }}"><i class="fa fa-files-o"></i> <span>Logs</span></a></li>
+```
 
 ## Change log
 
