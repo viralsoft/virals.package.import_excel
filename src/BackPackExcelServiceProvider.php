@@ -70,7 +70,7 @@ class BackPackExcelServiceProvider extends ServiceProvider
         ], 'backpackexcel.views');
 
         $this->publishes([
-            __DIR__.'/../Jobs' => base_path('app/Jobs/'),
+            __DIR__.'/Jobs' => base_path('app/Jobs/'),
         ], 'backpackexcel.Jobs');
 
         $this->publishes([
