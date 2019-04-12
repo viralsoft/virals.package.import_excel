@@ -142,7 +142,11 @@ class ImportExcel implements ShouldQueue
         if (!empty($this->relationData)) {
             foreach ($this->relationData as $reKey => $reValue) {
                 $reClass = get_class($model->{$reValue['method']}()->getRelated());
-                $relationData = $reClass::whereRaw("cast(id as char(255)) = ?", $val[$reKey])->first();
+                $relationData = $reClass::query()
+                    ->where($reValue['column_name'], $val[$reKey])
+//                    ->whereRaw("cast(? as char(255)) = ?", $reValue['column_name'], $val[$reKey])
+//                    ->orWhereRaw("cast(id as char(255)) = ?", $val[$reKey])
+                    ->first();
                 if ($relationData) {
                     switch ($reValue['type']) {
                         case 'BelongsTo':
@@ -152,6 +156,9 @@ class ImportExcel implements ShouldQueue
                         case 'BelongsToMany':
                             $model->{$reValue['method']}()->sync($val[$reKey]);
                             break;
+//                        case 'HasMany':
+//                            $model->{$reValue['method']}()->sync($val[$reKey]);
+//                            break;
                         default:
                     }
                 } else {
@@ -211,6 +218,7 @@ class ImportExcel implements ShouldQueue
             if ($value['is_relation']) {
                 $relationData[$key]['method'] = $value['name'];
                 $relationData[$key]['type'] = $value['relationship_type'];
+                $relationData[$key]['column_name'] = $value['relationship_column_select'];
             }
         }
         $this->relationData = $relationData;

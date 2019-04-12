@@ -1,4 +1,17 @@
 <?php
+$item_name = strtolower(isset($field['entity_singular']) && !empty($field['entity_singular']) ? $field['entity_singular'] : $field['label']);
+
+$items = old(square_brackets_to_dots($field['name'])) ?? $field['value'] ?? $field['default'] ?? [];
+if (is_array($items)) {
+    if (count($items)) {
+        foreach ($items as $index => $item) {
+            $items[$index] = (object) $item;
+        }
+        $items = collect($items);
+    } else {
+        $items = collect([]);
+    }
+}
 $modelClass = get_class($crud->model);
 $column_model = \DB::connection()->getSchemaBuilder()->getColumnListing($crud->model->getTable());
 unset($column_model[array_search( with(new $modelClass)->getKeyName(), $column_model)]);
@@ -49,22 +62,35 @@ foreach ($column_model as $column) {
                     <th></th>
                     <th scope="col">Ralation</th>
                     <th scope="col">Label Relation In Excel File</th>
+                    <th scope="col">Column of relation table</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach( $column_relation as $column )
-                    @php
-                        $idItem = strtotime ("now") . uniqid() . rand(0, 100);
-                    @endphp
-                    <tr id="tr_{{ $idItem }}" class="column_{{ $field['name'] }}">
-                        <td style="width: 10%" id="checkbox_{{ $idItem }}">
-                            <input class="checkbox_{{ $field['name'] }}" type="checkbox">
-                        </td>
-                        <td>{{ $column }}</td>
-                        <td>
-                            <input type="text" placeholder="label..." value="{{ $column }}" name="{{ $column }}" is_relation = "1" class="input_set_label_column_{{ $field['name'] }}">
-                        </td>
-                    </tr>
+                @foreach( $relations as $column => $relation )
+                    @if (in_array($relation['type'], ['BelongsTo', 'BelongsToMany']))
+                        @php
+                            $idItem = strtotime ("now") . uniqid() . rand(0, 100);
+                        @endphp
+                        <tr id="tr_{{ $idItem }}" class="column_{{ $field['name'] }}">
+                            <td style="width: 10%" id="checkbox_{{ $idItem }}">
+                                <input class="checkbox_{{ $field['name'] }}" type="checkbox">
+                            </td>
+                            <td>{{ $column }}</td>
+                            <td>
+                                <input type="text" placeholder="label..." value="{{ $column }}" name="{{ $column }}" is_relation = "1" class="input_set_label_column_{{ $field['name'] }}">
+                            </td>
+                            <td>
+                                @php
+                                    $columnRelations = \DB::connection()->getSchemaBuilder()->getColumnListing(with(new $relation['model'])->getTable());
+                                @endphp
+                                <select class="select2_field input_select_column_{{ $field['name'] }}" name="" style="width: 100%">
+                                    @foreach($columnRelations as $columnRe)
+                                        <option value="{{ $columnRe }}">{{ $columnRe }}</option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
@@ -89,7 +115,7 @@ foreach ($column_model as $column) {
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
         <style>
             td {
-                width: 45%;
+                /*width: 45%;*/
             }
         </style>
     @endpush
@@ -134,13 +160,17 @@ foreach ($column_model as $column) {
                             let column = $(this).find("input.input_set_label_column_{{ $field['name'] }}");
                             let name = column.attr('name');
                             let value = column.val();
-                            let key = deleteVN(value).replace(' ', '_').toLowerCase();
+                            let key = deleteVN(value).trim().replace(' ', '_').toLowerCase();
+                            let columOfRelationSelect = $(this).find("select.input_select_column_{{ $field['name'] }}");
+                            let columOfRelationSelected = columOfRelationSelect.val();
                             data[key] = {};
                             data[key]['name'] = name;
                             data[key]['label'] = value;
                             data[key]['type'] = '';
                             data[key]['is_relation'] = column.attr('is_relation') == "1" ? 1 : 0;
-                            data[key]['relationship_type'] = column.attr('is_relation') == "1" && relations[name]['type'] == 'BelongsToMany'  ? value : '';
+                            data[key]['relationship_type'] = column.attr('is_relation') == "1" && ['BelongsTo', 'BelongsToMany'].includes(relations[name]['type']) ? relations[name]['type'] : '';
+                            data[key]['relationship_column_select'] = columOfRelationSelected;
+
                         }
                     });
                     $.ajax({
@@ -151,6 +181,16 @@ foreach ($column_model as $column) {
                     }).done(function(response) {
                         $("#response_{{ $field['name'] }}").empty().append(response.message);
                     });
+                });
+
+                // trigger select2 for each untriggered select2 box
+                $('.select2_field').each(function (i, obj) {
+                    if (!$(obj).hasClass("select2-hidden-accessible"))
+                    {
+                        $(obj).select2({
+                            theme: "bootstrap"
+                        });
+                    }
                 });
             })
         </script>

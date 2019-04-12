@@ -91,8 +91,7 @@ class ViralsExcelFileCrudController extends CrudController
                     $params[$paramName]['relationship'] = null;
                     if (isset($param['is_relation']) && (int)$param['is_relation']) {
                         $tableRalaionName = with(new $request->model_type)->{$param['name']}()->getRelated()->getTable();
-                        $relationship = \DB::table($tableRalaionName)->pluck('name', 'id')->toArray();
-                        $params[$paramName]['relationship'] = $relationship;
+                        $params[$paramName]['relationship'] = \DB::table($tableRalaionName)->select(['id', $param['relationship_column_select']])->get();
                     }
                 }
             }

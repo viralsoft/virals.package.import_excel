@@ -28,6 +28,7 @@ class ViralsExcelFieldCrudController extends CrudController
         $this->crud->denyAccess('update');
         $this->crud->denyAccess('create');
         $this->crud->addButtonFromView('line', 'vivals_excel_show_data_field', 'vivals_excel_show_data_field', 'beginning');
+        $this->crud->addButtonFromView('line', 'vivals_excel_down_field_excel', 'vivals_excel_down_field_excel', 'beginning');
 
         /*
         |--------------------------------------------------------------------------

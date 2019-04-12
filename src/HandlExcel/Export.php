@@ -14,19 +14,15 @@ class Export
     public function processExport($id)
     {
         $fields = ExcelField::find($id);
-        $data = json_decode($fields->data, true);
-        $dataExport = [];
         if (!is_null($fields)) {
+            $data = json_decode($fields->data, true);
+            $dataExport = [];
             $headModel = [];
             foreach ($data as $fieldName => $field) {
-                if ((int)$field['is_relation']) {
-                    $dataExport['relationship'][$field['label']][] = collect(['id', $field['label']]);
-
+                if ((int)$field['is_relation'] && count($field['relationship'])) {
+                    $dataExport['relationship'][$field['label']][] = collect(array_keys($field['relationship'][0]));
                     foreach ($field['relationship'] as $key => $item) {
-                        $dataExport['relationship'][$field['label']][] = collect([
-                            $key,
-                            $item
-                        ]);
+                        $dataExport['relationship'][$field['label']][] = collect($item);
                     }
                     $dataExport['relationship'][$field['label']] = collect($dataExport['relationship'][$field['label']]);
                 }
