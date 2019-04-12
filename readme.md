@@ -14,12 +14,13 @@ Via Composer
 ``` bash
 $ composer require viralsbackpack/backpackexcel
 ```
-
 Run command:
 ```bash
 php artisan vendor:publish --provider="ViralsBackpack\BackPackImageUpload\BackPackExcelServiceProvider"
 
 php artisan migrate
+
+php artisan storage:link
 ```
 
 ## Usage
@@ -64,16 +65,10 @@ Add sidebar manager log import excel
 <li><a href="{{ backpack_url('virals-excel-file') }}"><i class="fa fa-files-o"></i> <span>Excel Files</span></a></li>
 <li><a href="{{ backpack_url('virals-excel-file-log') }}"><i class="fa fa-files-o"></i> <span>Logs</span></a></li>
 ```
-
+![alt text](https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260)
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
-```
 
 ## Contributing
 
