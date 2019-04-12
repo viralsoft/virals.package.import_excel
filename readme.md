@@ -7,6 +7,9 @@
 
 This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
 
+## Description
+This package support import data from excel with relationship
+
 ## Installation
 
 Via Composer
@@ -23,7 +26,7 @@ php artisan migrate
 php artisan storage:link
 ```
 
-## Usage
+## Setup
 Add trait ```ViralsBackpack\BackPackExcel\Traits\ViralsRelationshipMethod``` to main model import data from excel , Eg:
 
 ```php
@@ -50,7 +53,14 @@ class Tag extends Model
     protected $fillable = ['name'];
 }
 ```
-Export demo excel:
+Add sidebar manager log import excel
+```php
+<li><a href="{{ backpack_url('virals-excel-field') }}"><i class="fa fa-files-o"></i> <span>Fields</span></a></li>
+<li><a href="{{ backpack_url('virals-excel-file') }}"><i class="fa fa-files-o"></i> <span>Excel Files</span></a></li>
+<li><a href="{{ backpack_url('virals-excel-file-log') }}"><i class="fa fa-files-o"></i> <span>Logs</span></a></li>
+```
+
+### Export demo excel:
 1. Add field to controller have model import:
 ```php
 $this->crud->addField([ 
@@ -60,14 +70,28 @@ $this->crud->addField([
 ]);
 ```
 2. Setting file excel demo
-
-Add sidebar manager log import excel
-```php
-<li><a href="{{ backpack_url('virals-excel-field') }}"><i class="fa fa-files-o"></i> <span>Fields</span></a></li>
-<li><a href="{{ backpack_url('virals-excel-file') }}"><i class="fa fa-files-o"></i> <span>Excel Files</span></a></li>
-<li><a href="{{ backpack_url('virals-excel-file-log') }}"><i class="fa fa-files-o"></i> <span>Logs</span></a></li>
-```
 ![alt text](https://raw.githubusercontent.com/viralsoft/virals.package.import_excel/master/export.png)
+
+Eg:
+if you choice 'name' column in relation, you must fill value of 'name' in main sheet model. 
+
+3. Download 
+
+### Import excel
+1. You can add the field upload of laravel backpack to controller
+```php
+$this->crud->addField([   // Upload
+    'name' => 'file',
+    'label' => 'Image',
+    'type' => 'upload',
+    'upload' => true,
+]);
+```
+2. In store method in controller, you call method import excel
+```php
+$ip = new Import();
+$ip->processImport($request->file);
+```
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
