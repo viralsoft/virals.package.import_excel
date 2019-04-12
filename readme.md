@@ -67,7 +67,7 @@ Add sidebar manager log import excel
 <li><a href="{{ backpack_url('virals-excel-file') }}"><i class="fa fa-files-o"></i> <span>Excel Files</span></a></li>
 <li><a href="{{ backpack_url('virals-excel-file-log') }}"><i class="fa fa-files-o"></i> <span>Logs</span></a></li>
 ```
-![alt text](https://drive.google.com/file/d/1-qJTkcRU-JW6WYE6APs0lpiCNu22C4j2/view?usp=sharing)
+![alt text](https://raw.githubusercontent.com/viralsoft/virals.package.import_excel/blob/master/export.png)
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
