@@ -4,9 +4,9 @@
     "license": "license",
     "authors": [
         {
-            "name": "author name",
-            "email": "author email",
-            "homepage": "author homepage"
+            "name": "virals-dev",
+            "email": "ViralS-dev@viralsoft.vn",
+            "homepage": "https://github.com/viralsoft"
         }
     ],
     "homepage": "https://github.com/viralsbackpack/backpackexcel",
