@@ -16,7 +16,7 @@ $ composer require viralsbackpack/backpackexcel
 ```
 Run command:
 ```bash
-php artisan vendor:publish --provider="ViralsBackpack\BackPackImageUpload\BackPackExcelServiceProvider"
+php artisan vendor:publish --provider="ViralsBackpack\BackPackExcel\BackPackExcelServiceProvider"
 
 php artisan migrate
 
@@ -50,8 +50,8 @@ class Tag extends Model
     protected $fillable = ['name'];
 }
 ```
-
-Add field to controller to use setting field:
+Export demo excel:
+1. Add field to controller have model import:
 ```php
 $this->crud->addField([ 
     'name' => 'prices', //key unique field
@@ -59,13 +59,15 @@ $this->crud->addField([
     'request_class' => TagRequest::class, // request class validate field in excel
 ]);
 ```
+2. Setting file excel demo
+
 Add sidebar manager log import excel
 ```php
 <li><a href="{{ backpack_url('virals-excel-field') }}"><i class="fa fa-files-o"></i> <span>Fields</span></a></li>
 <li><a href="{{ backpack_url('virals-excel-file') }}"><i class="fa fa-files-o"></i> <span>Excel Files</span></a></li>
 <li><a href="{{ backpack_url('virals-excel-file-log') }}"><i class="fa fa-files-o"></i> <span>Logs</span></a></li>
 ```
-![alt text](https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260)
+![alt text](https://drive.google.com/file/d/1-qJTkcRU-JW6WYE6APs0lpiCNu22C4j2/view?usp=sharing)
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
