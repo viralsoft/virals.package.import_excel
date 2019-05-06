@@ -1,6 +1,6 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Exports;
+namespace ViralsLaravel\ImportRelationExcel\Exports;
 
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 use Maatwebsite\Excel\Concerns\Exportable;

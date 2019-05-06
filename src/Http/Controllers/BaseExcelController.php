@@ -1,6 +1,6 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Http\Controllers;
+namespace ViralsLaravel\ImportRelationExcel\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;

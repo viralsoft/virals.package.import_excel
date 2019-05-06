@@ -1,9 +1,9 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Http\Controllers;
+namespace ViralsLaravel\ImportRelationExcel\Http\Controllers;
 
 use Illuminate\Http\Request;
-use ViralsBackpack\BackPackExcel\Models\ExcelFileLog;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelFileLog;
 use Freshbitsweb\Laratables\Laratables;
 
 class ExcelLogController extends BaseExcelController

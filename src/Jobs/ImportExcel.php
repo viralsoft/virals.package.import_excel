@@ -1,15 +1,15 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Jobs;
+namespace ViralsLaravel\ImportRelationExcel\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use ViralsBackpack\BackPackExcel\Models\ExcelField;
-use ViralsBackpack\BackPackExcel\Models\ExcelFile;
-use ViralsBackpack\BackPackExcel\Models\ExcelFileLog;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelField;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelFile;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelFileLog;
 
 class ImportExcel implements ShouldQueue
 {

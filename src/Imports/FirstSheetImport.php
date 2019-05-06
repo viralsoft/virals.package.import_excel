@@ -1,11 +1,11 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Imports;
+namespace ViralsLaravel\ImportRelationExcel\Imports;
 
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use ViralsBackpack\BackPackExcel\Jobs\ImportExcel;
+use ViralsLaravel\ImportRelationExcel\Jobs\ImportExcel;
 
 class FirstSheetImport implements ToCollection, WithHeadingRow
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Exports;
+namespace ViralsLaravel\ImportRelationExcel\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithTitle;

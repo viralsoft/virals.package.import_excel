@@ -1,10 +1,10 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Http\Controllers;
+namespace ViralsLaravel\ImportRelationExcel\Http\Controllers;
 
-use ViralsBackpack\BackPackExcel\HandlExcel\Export;
-use ViralsBackpack\BackPackExcel\Models\ExcelFile;
-use ViralsBackpack\BackPackExcel\Models\ExcelField;
+use ViralsLaravel\ImportRelationExcel\HandlExcel\Export;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelFile;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelField;
 use Illuminate\Http\Request;
 
 class ExcelFileController extends BaseExcelController

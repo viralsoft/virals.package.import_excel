@@ -1,10 +1,10 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Facades;
+namespace ViralsLaravel\ImportRelationExcel\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class BackPackExcel extends Facade
+class ImportRelationExcel extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class BackPackExcel extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'backpackexcel';
+        return 'importrelationexcel';
     }
 }

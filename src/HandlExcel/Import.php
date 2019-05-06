@@ -1,11 +1,11 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\HandlExcel;
+namespace ViralsLaravel\ImportRelationExcel\HandlExcel;
 
 use Maatwebsite\Excel\Facades\Excel;
-use ViralsBackpack\BackPackExcel\Models\ExcelFile;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelFile;
 use Illuminate\Support\Facades\Storage;
-use ViralsBackpack\BackPackExcel\Imports\UsersImport;
+use ViralsLaravel\ImportRelationExcel\Imports\UsersImport;
 use Carbon\Carbon;
 
 class Import

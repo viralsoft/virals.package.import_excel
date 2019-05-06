@@ -1,6 +1,6 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Models;
+namespace ViralsLaravel\ImportRelationExcel\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

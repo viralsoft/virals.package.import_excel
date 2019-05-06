@@ -1,5 +1,5 @@
 <?php
-namespace ViralsBackpack\BackPackExcel\Traits;
+namespace ViralsLaravel\ImportRelationExcel\Traits;
 
 use ErrorException;
 use Illuminate\Database\Eloquent\Relations\Relation;

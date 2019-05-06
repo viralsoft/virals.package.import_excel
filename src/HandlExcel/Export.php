@@ -1,9 +1,9 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\HandlExcel;
+namespace ViralsLaravel\ImportRelationExcel\HandlExcel;
 
-use ViralsBackpack\BackPackExcel\Exports\ViralsExport;
-use ViralsBackpack\BackPackExcel\Models\ExcelField;
+use ViralsLaravel\ImportRelationExcel\Exports\ViralsExport;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelField;
 
 class Export
 {

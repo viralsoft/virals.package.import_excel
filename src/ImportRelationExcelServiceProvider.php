@@ -1,10 +1,10 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel;
+namespace ViralsLaravel\ImportRelationExcel;
 
 use Illuminate\Support\ServiceProvider;
 
-class BackPackExcelServiceProvider extends ServiceProvider
+class ImportRelationExcelServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
@@ -31,11 +31,11 @@ class BackPackExcelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/backpackexcel.php', 'backpackexcel');
+        $this->mergeConfigFrom(__DIR__.'/../config/importrelationexcel.php', 'importrelationexcel');
 
         // Register the service the package provides.
-        $this->app->singleton('backpackexcel', function ($app) {
-            return new BackPackExcel;
+        $this->app->singleton('importrelationexcel', function ($app) {
+            return new ImportRelationExcel;
         });
     }
 
@@ -46,7 +46,7 @@ class BackPackExcelServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['backpackexcel'];
+        return ['importrelationexcel'];
     }
     
     /**
@@ -58,12 +58,12 @@ class BackPackExcelServiceProvider extends ServiceProvider
     {
         // Publishing the configuration file.
         $this->publishes([
-            __DIR__.'/../config/backpackexcel.php' => config_path('backpackexcel.php'),
-        ], 'backpackexcel.config');
+            __DIR__.'/../config/importrelationexcel.php' => config_path('importrelationexcel.php'),
+        ], 'importrelationexcel.config');
 
         $this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/'),
-        ], 'backpackexcel.lang');
+        ], 'importrelationexcel.lang');
 
         $this->publishes([
             __DIR__.'/../public/' => public_path('vendor/viralslaravelexcel'),

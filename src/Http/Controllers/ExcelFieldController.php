@@ -1,9 +1,10 @@
 <?php
 
-namespace ViralsBackpack\BackPackExcel\Http\Controllers;
+namespace ViralsLaravel\ImportRelationExcel\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
-use ViralsBackpack\BackPackExcel\Models\ExcelField;
+use ViralsLaravel\ImportRelationExcel\Models\ExcelField;
 use Illuminate\Container\Container;
 
 class ExcelFieldController extends BaseExcelController
@@ -93,7 +94,11 @@ class ExcelFieldController extends BaseExcelController
             foreach ($relations as $relation => $infor) {
                 if (in_array($infor['type'], ['BelongsTo', 'BelongsToMany'])) {
                     $columnsRelation = \DB::connection()->getSchemaBuilder()->getColumnListing((new $infor['model'])->getTable());
-                    if ($infor['type'] == 'BelongsTo') $fKeyNames[] = $model->$relation()->getForeignKeyName();
+                    if ($infor['type'] == 'BelongsTo') {
+                        $fKeyNames[] = method_exists($model->$relation(),'getForeignKeyName') ?
+                            $model->$relation()->getForeignKeyName():
+                            $model->$relation()->getForeignKey();
+                    }
                     $dataRelation[] = array(
                         'name' => $relation,
                         'is_relation' => 1,

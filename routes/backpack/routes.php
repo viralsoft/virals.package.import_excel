@@ -9,7 +9,7 @@
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
-    'namespace'  => 'ViralsBackpack\BackPackExcel\Http\Controllers',
+    'namespace'  => 'ViralsLaravel\ImportRelationExcel\Http\Controllers',
 ], function () { // custom admin routes
     Route::get('excel-fields', 'ExcelFieldController@index')->name('excel-fields.index');
     Route::delete('excel-fields/{field}', 'ExcelFieldController@destroy')->name('excel-fields.destroy');

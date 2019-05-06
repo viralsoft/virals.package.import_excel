@@ -1,19 +1,20 @@
 {
-    "name": "viralsbackpack/backpackexcel",
-    "description": "Import excel has relationship",
-    "license": "MIT",
+    "name": "viralslaravel/importrelationexcel",
+    "description": ":description",
+    "license": "license",
     "authors": [
         {
-            "name": "virals-dev",
-            "email": "ViralS-dev@viralsoft.vn",
-            "homepage": "https://github.com/viralsoft"
+            "name": "author name",
+            "email": "author email",
+            "homepage": "author homepage"
         }
     ],
-    "homepage": "https://github.com/viralsbackpack/backpackexcel",
-    "keywords": ["Laravel", "BackPackExcel"],
+    "homepage": "https://github.com/viralslaravel/importrelationexcel",
+    "keywords": ["Laravel", "ImportRelationExcel"],
     "require": {
         "illuminate/support": "~5",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "freshbitsweb/laratables": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0",
@@ -23,21 +24,21 @@
     },
     "autoload": {
         "psr-4": {
-            "ViralsBackpack\\BackPackExcel\\": "src/"
+            "ViralsLaravel\\ImportRelationExcel\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ViralsBackpack\\BackPackExcel\\Tests\\": "tests"
+            "ViralsLaravel\\ImportRelationExcel\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ViralsBackpack\\BackPackExcel\\BackPackExcelServiceProvider"
+                "ViralsLaravel\\ImportRelationExcel\\ImportRelationExcelServiceProvider"
             ],
             "aliases": {
-                "BackPackExcel": "ViralsBackpack\\BackPackExcel\\Facades\\BackPackExcel"
+                "ImportRelationExcel": "ViralsLaravel\\ImportRelationExcel\\Facades\\ImportRelationExcel"
             }
         }
     }
