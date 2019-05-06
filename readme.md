@@ -27,7 +27,7 @@ php artisan storage:link
 ```
 
 ## Setup
-Add trait ```ViralsBackpack\BackPackExcel\Traits\ViralsRelationshipMethod``` to main model import data from excel , Eg:
+_Add trait ```ViralsBackpack\BackPackExcel\Traits\ViralsRelationshipMethod``` to model class, Eg:
 
 ```php
 <?php
@@ -53,23 +53,26 @@ class Tag extends Model
     protected $fillable = ['name'];
 }
 ```
-Add sidebar manager log import excel
+_Add attribute $requestExcel to model class if you want validate data import
+
 ```php
-<li><a href="{{ backpack_url('virals-excel-field') }}"><i class="fa fa-files-o"></i> <span>Fields</span></a></li>
-<li><a href="{{ backpack_url('virals-excel-file') }}"><i class="fa fa-files-o"></i> <span>Excel Files</span></a></li>
-<li><a href="{{ backpack_url('virals-excel-file-log') }}"><i class="fa fa-files-o"></i> <span>Logs</span></a></li>
+<?php
+use App\Http\Requests\TagRequest;
+
+class Tag extends Model
+{
+    public $requestExcel = TagRequest::class;
+}
+
+```
+
+_Add sidebar manager log import excel
+```php
+<li><a href="{{ route('excel-fields.index') }}"><i class="fa fa-files-o"></i> <span>Virals Excels</span></a></li>
 ```
 
 ### Export demo excel:
-1. Add field to controller have model import:
-```php
-$this->crud->addField([ 
-    'name' => 'prices', //key unique field
-    'type' => 'virals_template_excel',
-    'request_class' => TagRequest::class, // request class validate field in excel
-]);
-```
-2. Setting file excel demo
+1. Setting file excel demo
 ![alt text](https://raw.githubusercontent.com/viralsoft/virals.package.import_excel/master/export.png)
 
 Eg:
@@ -82,14 +85,14 @@ if you choice 'name' column in relation, you must fill value of 'name' in main s
 ```php
 $this->crud->addField([   // Upload
     'name' => 'file',
-    'label' => 'Image',
+    'label' => 'File',
     'type' => 'upload',
     'upload' => true,
 ]);
 ```
 2. In store method in controller, you call method import excel
 ```php
-$ip = new Import();
+$ip = new ViralsLaravel\ImportRelationExcel\HandlExcel\Import();
 $ip->processImport($request->file);
 ```
 ## Change log

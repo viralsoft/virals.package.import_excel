@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Virals Excel</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('vendor/viralslaravelexcel/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
