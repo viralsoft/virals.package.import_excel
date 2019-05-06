@@ -1,12 +1,12 @@
 {
     "name": "viralslaravel/importrelationexcel",
-    "description": ":description",
-    "license": "license",
+    "description": "Import excel has relationship",
+    "license": "MIT",
     "authors": [
         {
-            "name": "author name",
-            "email": "author email",
-            "homepage": "author homepage"
+            "name": "virals-manhhd",
+            "email": "manhhd@viralsoft.vn",
+            "homepage": "https://github.com/viralsoft/virals.package.import_excel"
         }
     ],
     "homepage": "https://github.com/viralslaravel/importrelationexcel",
