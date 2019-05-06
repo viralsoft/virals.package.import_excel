@@ -8,12 +8,13 @@ use ReflectionMethod;
 
 trait ViralsRelationshipMethod
 {
+    /**
+     * @return array
+     * @throws \ReflectionException
+     */
     public function relationships() {
-
         $model = new static;
-
         $relationships = [];
-
         foreach((new ReflectionClass($model))->getMethods(ReflectionMethod::IS_PUBLIC) as $method)
         {
             if ($method->class != get_class($model) ||
@@ -21,10 +22,8 @@ trait ViralsRelationshipMethod
                 $method->getName() == __FUNCTION__) {
                 continue;
             }
-
             try {
                 $return = $method->invoke($model);
-
                 if ($return instanceof Relation) {
                     $relationships[$method->getName()] = [
                         'type' => (new ReflectionClass($return))->getShortName(),
@@ -33,7 +32,6 @@ trait ViralsRelationshipMethod
                 }
             } catch(ErrorException $e) {}
         }
-
         return $relationships;
     }
 }

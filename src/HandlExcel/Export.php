@@ -11,6 +11,10 @@ class Export
     protected $relationShip = [];
     protected $sheet;
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function processExport($id)
     {
         $fields = ExcelField::find($id);
@@ -28,13 +32,12 @@ class Export
                 }
                 $headModel[] = $field['label'];
             }
-
             $headModel[] = 'field_id';
             $dataExport['model'][] = $headModel;
             $temp = array_fill(0, count($headModel) - 1, '');
             array_push($temp, $id);
             $dataExport['model'][] = $temp;
-            return (new ViralsExport($dataExport))->download('field_' . $id . '.xlsx');
+            return (new ViralsExport($dataExport))->download($fields->name . '.xlsx');
         }
     }
 }

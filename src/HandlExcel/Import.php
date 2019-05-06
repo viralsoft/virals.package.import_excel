@@ -3,13 +3,9 @@
 namespace ViralsBackpack\BackPackExcel\HandlExcel;
 
 use Maatwebsite\Excel\Facades\Excel;
-use ViralsBackpack\BackPackExcel\Models\ExcelField;
 use ViralsBackpack\BackPackExcel\Models\ExcelFile;
-use App\Jobs\ImportExcel;
 use Illuminate\Support\Facades\Storage;
 use ViralsBackpack\BackPackExcel\Imports\UsersImport;
-use Maatwebsite\Excel\HeadingRowImport;
-
 use Carbon\Carbon;
 
 class Import
@@ -18,7 +14,6 @@ class Import
      * @param array $params
      * @return bool
      */
-
     public function processImport($file){
         $response = $this->upload($file);
         if(!$response)
@@ -31,18 +26,15 @@ class Import
             ExcelFile::create($data);
             return 'error';
         }
-
         $data = array(
             'name' => $response['file_name'],
             'status' => ExcelFile::PROCESSING,
             'url'=> $response['url'],
-
         );
         //create status file
         $excelFile = ExcelFile::create($data);
         //import data by excel
         Excel::import(new UsersImport($excelFile), $excelFile->url);
-
         return response()->json('warning');
     }
 
@@ -68,16 +60,10 @@ class Import
         $private_name =  preg_replace('/\s+/', '-', $file_name . Carbon::now()->toDateTimeString() . '.' . $extension);
         Storage::putFileAs($path, $file, $private_name);
         $path_full = str_replace('public/', '', $path);
-
         $data = array(
             'url'       => 'storage/' . $path_full . '/' . $private_name,
             'file_name' => $private_name
         );
-
         return $data;
-
     }
-
-
-
 }

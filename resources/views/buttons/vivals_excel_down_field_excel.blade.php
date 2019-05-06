@@ -1,1 +1,0 @@
-<a type="button" class="btn btn-info" href="{{ route("virals.excel.download", $entry->id) }}">Download Excel Demo</a>

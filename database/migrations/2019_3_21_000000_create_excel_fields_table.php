@@ -15,6 +15,7 @@ class CreateExcelFieldsTable extends Migration
     {
         Schema::create('excel_fields', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->nullable();
             $table->string('model_type');
             $table->string('request_type')->nullable();
             $table->text('data')->nullable();

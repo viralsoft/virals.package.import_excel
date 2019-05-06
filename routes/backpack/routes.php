@@ -11,12 +11,23 @@ Route::group([
     'middleware' => ['web', config('backpack.base.middleware_key', 'admin')],
     'namespace'  => 'ViralsBackpack\BackPackExcel\Http\Controllers',
 ], function () { // custom admin routes
-    CRUD::resource('virals-excel-file', 'ViralsExcelFileCrudController');
-    Route::get('virals-excel-file/{id}/show-log', 'ViralsExcelFileCrudController@showLog')->name('crud.virals-excel-file.showLog ');
-    Route::post('virals-excel-file/get-relaton-column', 'ViralsExcelFileCrudController@getRelatonColumn')->name('virals.excel.getRelatonColumn');
-    Route::get('virals-excel-file/download/{id}', 'ViralsExcelFileCrudController@downloadFile')->name('virals.excel.download');
+    Route::get('excel-fields', 'ExcelFieldController@index')->name('excel-fields.index');
+    Route::delete('excel-fields/{field}', 'ExcelFieldController@destroy')->name('excel-fields.destroy');
+    Route::get('excel-fields/process-list', 'ExcelFieldController@process')->name('excel-fields.process-list');
+    Route::get('excel-fields/create', 'ExcelFieldController@create')->name('excel-fields.create');
+    Route::get('excel-fields/{field}', 'ExcelFieldController@show')->name('excel-fields.show');
+    Route::get('excel-fields/{field}/edit', 'ExcelFieldController@edit')->name('excel-fields.edit');
+    Route::post('excel-fields/get-columns', 'ExcelFieldController@getColumns')->name('excel-fields.get-columns');
 
-    CRUD::resource('virals-excel-file-log', 'ViralsExcelFileLogCrudController');
-    CRUD::resource('virals-excel-field', 'ViralsExcelFieldCrudController');
-    Route::get('virals-excel-field/get-data/{id}', 'ViralsExcelFieldCrudController@getData')->name('virals-excel-field.get-data');
+    Route::get('excel-files', 'ExcelFileController@index')->name('excel-files.index');
+    Route::delete('excel-files/{file}', 'ExcelFileController@destroy')->name('excel-files.destroy');
+    Route::get('excel-files/process-list', 'ExcelFileController@process')->name('excel-files.process-list');
+    Route::get('excel-files/{file}', 'ExcelFileController@show')->name('excel-files.show');
+    Route::get('excel-files/download/{id}', 'ExcelFileController@downloadFile')->name('excel-files.download');
+    Route::post('excel-files/get-relaton-column', 'ExcelFileController@getRelatonColumn')->name('excel-files.getRelatonColumn');
+
+    Route::get('excel-logs', 'ExcelLogController@index')->name('excel-logs.index');
+    Route::delete('excel-logs/{log}', 'ExcelLogController@destroy')->name('excel-logs.destroy');
+    Route::get('excel-logs/process-list', 'ExcelLogController@process')->name('excel-logs.process-list');
+    Route::get('excel-logs/{log}', 'ExcelLogController@show')->name('excel-logs.show');
 });

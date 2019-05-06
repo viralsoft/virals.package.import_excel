@@ -3,12 +3,10 @@
 namespace ViralsBackpack\BackPackExcel\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Backpack\CRUD\CrudTrait;
 
 
 class ExcelFileLog extends Model
 {
-    use CrudTrait;
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
@@ -31,6 +29,20 @@ class ExcelFileLog extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    /**
+     * Returns the action column html for datatables.
+     * @param $entry
+     * @return array|string
+     * @throws \Throwable
+     */
+    public static function laratablesCustomAction($entry)
+    {
+        $entry->routeName = "excel-logs";
+        return view('viralslaravelexcel::contents.btn_stack', [
+            'stack_line' => ['delete', 'show_log'],
+            'entry' => $entry,
+        ])->render();
+    }
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

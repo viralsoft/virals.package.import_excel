@@ -13,10 +13,10 @@ class BackPackExcelServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'viralsbackpack');
-         $this->loadViewsFrom(__DIR__.'/../resources/views', 'viralsbackpack');
-         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-         $this->loadRoutesFrom(__DIR__.'/../routes/backpack/routes.php');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'viralslaravelexcel');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'viralslaravelexcel');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/../routes/backpack/routes.php');
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
@@ -48,7 +48,7 @@ class BackPackExcelServiceProvider extends ServiceProvider
     {
         return ['backpackexcel'];
     }
-
+    
     /**
      * Console-specific booting.
      *
@@ -62,19 +62,11 @@ class BackPackExcelServiceProvider extends ServiceProvider
         ], 'backpackexcel.config');
 
         $this->publishes([
-            __DIR__.'/../resources/views/fields' => base_path('resources/views/vendor/backpack/crud/fields/'),
-        ], 'backpackexcel.views');
-
-        $this->publishes([
-            __DIR__.'/../resources/views/buttons' => base_path('resources/views/vendor/backpack/crud/buttons/'),
-        ], 'backpackexcel.views');
-
-        $this->publishes([
-            __DIR__.'/Jobs' => base_path('app/Jobs/'),
-        ], 'backpackexcel.Jobs');
-
-        $this->publishes([
             __DIR__.'/../resources/lang' => resource_path('lang/'),
-        ], 'backpackexcel.views');
+        ], 'backpackexcel.lang');
+
+        $this->publishes([
+            __DIR__.'/../public/' => public_path('vendor/viralslaravelexcel'),
+        ], 'public');
     }
 }

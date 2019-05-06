@@ -1,18 +1,15 @@
 <?php
 
-namespace App\Jobs;
+namespace ViralsBackpack\BackPackExcel\Jobs;
 
-use App\Models\Post;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Maatwebsite\Excel\Facades\Excel;
 use ViralsBackpack\BackPackExcel\Models\ExcelField;
 use ViralsBackpack\BackPackExcel\Models\ExcelFile;
 use ViralsBackpack\BackPackExcel\Models\ExcelFileLog;
-
 
 class ImportExcel implements ShouldQueue
 {
@@ -154,7 +151,7 @@ class ImportExcel implements ShouldQueue
                             $model->save();
                             break;
                         case 'BelongsToMany':
-                            $model->{$reValue['method']}()->sync($val[$reKey]);
+                            $model->{$reValue['method']}()->sync($relationData->id);
                             break;
 //                        case 'HasMany':
 //                            $model->{$reValue['method']}()->sync($val[$reKey]);
