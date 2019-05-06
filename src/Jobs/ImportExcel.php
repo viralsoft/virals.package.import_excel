@@ -101,9 +101,8 @@ class ImportExcel implements ShouldQueue
         };
 
         //set relationship
-        if (!$this->setRelationData($row)) {
-            return false;
-        };
+        $this->setRelationData($row);
+
         return true;
     }
 
