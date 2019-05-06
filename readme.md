@@ -70,31 +70,13 @@ _Add sidebar manager log import excel
 ```php
 <li><a href="{{ route('excel-fields.index') }}"><i class="fa fa-files-o"></i> <span>Virals Excels</span></a></li>
 ```
-
-### Export demo excel:
-1. Setting file excel demo
-![alt text](https://raw.githubusercontent.com/viralsoft/virals.package.import_excel/master/export.png)
-
-Eg:
-if you choice 'name' column in relation, you must fill value of 'name' in main sheet model. 
-
-3. Download 
-
-### Import excel
-1. You can add the field upload of laravel backpack to controller
-```php
-$this->crud->addField([   // Upload
-    'name' => 'file',
-    'label' => 'File',
-    'type' => 'upload',
-    'upload' => true,
-]);
-```
-2. In store method in controller, you call method import excel
+_In store method in controller, you call method import excel
 ```php
 $ip = new ViralsLaravel\ImportRelationExcel\HandlExcel\Import();
 $ip->processImport($request->file);
 ```
+### Usage:
+
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
