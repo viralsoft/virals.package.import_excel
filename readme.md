@@ -19,7 +19,7 @@ $ composer require viralsbackpack/backpackexcel
 ```
 Run command:
 ```bash
-php artisan vendor:publish --provider="ViralsBackpack\BackPackExcel\BackPackExcelServiceProvider"
+php artisan vendor:publish --provider="ViralsLaravel\ImportRelationExcel\BackPackExcelServiceProvider"
 
 php artisan migrate
 
@@ -27,7 +27,7 @@ php artisan storage:link
 ```
 
 ## Setup
-_Add trait ```ViralsBackpack\BackPackExcel\Traits\ViralsRelationshipMethod``` to model class, Eg:
+_Add trait ```ViralsLaravel\ImportRelationExcel\Traits\ViralsRelationshipMethod``` to model class, Eg:
 
 ```php
 <?php
@@ -36,7 +36,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
-use ViralsBackpack\BackPackExcel\Traits\ViralsRelationshipMethod;// <------------------------------- this one
+use ViralsLaravel\ImportRelationExcel\Traits\ViralsRelationshipMethod;// <------------------------------- this one
 
 class Tag extends Model
 {
