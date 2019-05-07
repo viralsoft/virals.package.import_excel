@@ -19,7 +19,7 @@ $ composer require viralsbackpack/backpackexcel
 ```
 Run command:
 ```bash
-php artisan vendor:publish --provider="ViralsLaravel\ImportRelationExcel\BackPackExcelServiceProvider"
+php artisan vendor:publish --provider="ViralsLaravel\ImportRelationExcel\ImportRelationExcelServiceProvider"
 
 php artisan migrate
 
