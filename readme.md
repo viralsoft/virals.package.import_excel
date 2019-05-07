@@ -76,7 +76,8 @@ $ip = new ViralsLaravel\ImportRelationExcel\HandlExcel\Import();
 $ip->processImport($request->file);
 ```
 ### Usage:
-
+_Watch guide video: 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ZqjTKvBP164/0.jpg)](https://www.youtube.com/watch?v=ZqjTKvBP164)
 ## Change log
 
 Please see the [changelog](changelog.md) for more information on what has changed recently.
